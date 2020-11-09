@@ -1,0 +1,10 @@
+.alphakey
+alphakey.py
+*.txt
+.ipynb_checkpoints/
+.DS_Store
+__pycache__/
+env.py
+*.xlsx
+*.json
+*.jpg
