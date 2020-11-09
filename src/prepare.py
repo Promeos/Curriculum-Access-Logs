@@ -25,8 +25,7 @@ def prep_log_cohort_data(df_logs, df_cohorts):
     
     df = df.assign(
 
-    date = pd.to_datetime(df['date']),
-    time = pd.to_datetime(df['time']),
+    date = pd.to_datetime(df['date'] + ' ' + df['time']),
     start_date = pd.to_datetime(df['start_date']),
     end_date = pd.to_datetime(df['end_date']),
         
@@ -34,5 +33,7 @@ def prep_log_cohort_data(df_logs, df_cohorts):
     program_id = df.program_id.astype(np.int)
     
     )
+    df.drop(columns='time', inplace=True)
+    df.rename(columns={'name': 'cohort_name'}, inplace=True)
     return df
     
