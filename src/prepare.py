@@ -5,7 +5,7 @@ from datetime import timedelta
 
 
 ############################# Prepare User Log Data ##################################
-def prep_log_cohort_data(df_logs, df_cohorts):
+def prep_log_cohort_data(df_logs, df_cohorts, explore=False):
     '''
     This function accepts the user log and cohort id datasets.
     Returns a merged and prepared dataset of user logs and cohort information.
@@ -52,6 +52,13 @@ def prep_log_cohort_data(df_logs, df_cohorts):
                        'end_start': 'program_end'},
               inplace=True)
     
+    #  Append columns to the original dataframe.
+    if explore == True:
+        df = append_program_type(df)
+        df = append_has_graduated(df)
+        df = append_active_status(df)
+        df.cohort_name = df.cohort_name.replace(0, 'Unassigned')
+    
     return df
 
 
@@ -82,6 +89,7 @@ def append_program_type(df):
                                                 'Data Science',
                                                 'Web Development']})
     df = df.merge(df_programs)
+
     return df
 
 
