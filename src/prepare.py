@@ -34,7 +34,7 @@ def prep_log_cohort_data(df_logs, df_cohorts, explore=False):
     # Cast date/time columns from object data types into datetime data type
     # Cast float data type columns into integer data type
     df = df.assign(
-    date = pd.to_datetime(df['date'] + ' ' + df['time']),
+    date = pd.to_datetime(df['date']),
     start_date = pd.to_datetime(df['start_date']),
     end_date = pd.to_datetime(df['end_date']),
         
@@ -59,6 +59,7 @@ def prep_log_cohort_data(df_logs, df_cohorts, explore=False):
         df = append_active_status(df)
         df.cohort_name = df.cohort_name.replace(0, 'Unassigned')
     
+    df.set_index('date', inplace=True)
     return df
 
 

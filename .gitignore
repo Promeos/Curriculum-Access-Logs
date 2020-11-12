@@ -8,3 +8,4 @@ env.py
 *.xlsx
 *.json
 *.jpg
+*y.ipynb
